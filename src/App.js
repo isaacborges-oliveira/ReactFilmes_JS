@@ -1,25 +1,18 @@
-import logo from './logo.svg';
+//chamar as telas do index.js
 import './App.css';
+import CadastroFilme from './pages/cadastroFilme/CadastroFilme';
+
+// import Login from './pages/login/Login';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <CadastroFilme/>
+     {/* // <Login/> */}
+    </>
+   
+
   );
 }
-
+//export : exporta o codigo de forma padrao
 export default App;
