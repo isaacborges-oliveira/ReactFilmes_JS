@@ -3,7 +3,7 @@ import Logo from "../../assets/img/logo.svg"
 const Header = () => {
     return (
         <header>
-            <div className="layout_grid">
+            <div className="layout_grid cabecalho">
 
             <img src={Logo} alt="Logo do Filmoteca" />
             <nav className="nav_header">

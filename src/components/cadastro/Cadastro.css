@@ -1,0 +1,68 @@
+.section_cadastro {
+    background-color: #CC3F55;
+    color: white;
+    padding: 50px 0 100px 0;
+}
+
+.form_cadastro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_cadastro h1 {
+    text-transform: uppercase;
+
+}
+
+.form_cadastro hr {
+    margin-top: 10px;
+    max-width: 360px;
+    width: 100%;
+    border-style: solid;
+    border-width: 1, 5px;
+    border-radius: 10px;
+    border-color: #73061b;
+}
+
+.campos_cadastro {
+    display: flex;
+    align-items: flex-end;
+    padding-top: 60px;
+    gap: 30px;
+
+}
+/* Modificando i imput e select */
+.campo_cad_nome input, 
+.campos_cad_genero select
+{
+border: none;
+border-radius: 6px;
+height: 30px;
+width: 350px;
+outline: none;
+padding: 0 5px;
+box-shadow: 1px 4px 4px 0px #00000081;
+margin-top: 7px;
+}
+
+.campo_cad_nome input, 
+.campos_cad_genero select{
+    display: flex;
+  
+}
+
+@media screen and (max-width: 979px)   {
+    .campos_cadastro{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    }
+
+    @media screen and (max-width: 340px)  {
+.form_cadastro{
+    font-size: 16px;
+}
+    }
+    
