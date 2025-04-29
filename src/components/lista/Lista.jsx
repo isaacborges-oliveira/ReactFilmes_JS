@@ -1,36 +1,49 @@
-import Cadastro from "../cadastro/Cadastro";
-import "./Lista.css"
-import Editar from "../../assets/img/pen-to-square-solid.svg"
-import Excluir from "../../assets/img/trash-can-regular.svg"
+import "./Lista.css";
 
-const Lista = () => {
-    return (
+// Importação de imagens:
+import Editar from "../../assets/img/pen-to-square-solid.svg";
+import Excluir from "../../assets/img/trash-can-regular.svg";
+
+const Lista = (props) => {
+    return(
         <section className="layout_grid listagem">
-            <h1>Lista dos Filmes</h1>
-            <hr />
+            <h1>{props.nomeLista}</h1>
+            <hr/>
+
             <div className="tabela">
                 <table>
+                    {/* Cabeçalho da tabela: */}
                     <thead>
-                        <tr className="Cabecalho">
-                            <th>Nome</th>
-                            <th>Gênero</th> 
-                            <th>Editar</th>
-                            <th>Excluir</th>
-
+                        {/* tr => Table Row */}
+                        <tr className="table_cabecalho"> 
+                            {/* th => Table Head */}
+                            <th> Nome </th>
+                            <th style={{display:props.visi_lista}}> Gênero </th>
+                            <th> Editar </th>
+                            <th> Excluir </th>
                         </tr>
                     </thead>
-                    <tbody>
+                    {/* tbody => Corpo da Tabela */}
+                    <tbody >
                         <tr className="item_lista">
-                            <td> Velozes e Furiosos</td>
-                            <td>Ação</td>
-                            <td> <img src={Editar} alt="Caneta" /></td>
-                            <td> <img src={Excluir} alt="Lixeira" /></td>
+                            <td style={{display:props.visi_lista}} data-cell="Nome"> Coraline </td>
+                            <td data-cell="Gênero"> Terror </td>
+                            <td data-cell="Editar"><img src={Editar} alt="" /></td>
+                            <td data-cell="Excluir"><img src={Excluir} alt="" /></td>
+                        </tr>
+                    </tbody>
+                    <tbody >
+                        <tr className="item_lista">
+                            <td style={{display:props.visi_lista}} data-cell="Nome"> Transformers </td>
+                            <td data-cell="Gênero"> Aventura </td>
+                            <td data-cell="Editar"><img src={Editar} alt="" /></td>
+                            <td data-cell="Excluir"><img src={Excluir} alt="" /></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </section>
-
     )
 }
+
 export default Lista;

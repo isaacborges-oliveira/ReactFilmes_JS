@@ -1,14 +1,13 @@
 //chamar as telas do index.js
-import './App.css';
-import CadastroFilme from './pages/cadastroFilme/CadastroFilme';
 
+import './App.css';
+import  Routes  from "./Routes/routes";
 // import Login from './pages/login/Login';
 
 function App() {
   return (
     <>
-     <CadastroFilme/>
-     {/* // <Login/> */}
+    <Routes/>
     </>
    
 

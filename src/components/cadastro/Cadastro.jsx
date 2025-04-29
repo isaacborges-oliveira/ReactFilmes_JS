@@ -1,13 +1,14 @@
+
 import "./Cadastro.css";
 import Botao from "../botao/Botao"
-const Cadastro = () => {
+const Cadastro = (props) => {
 
 
     return (
         <section className="section_cadastro">
             <form action="" className="layout_grid form_cadastro">
                 <h1>
-                    Cadastre um Filme
+                {props.tituloCadastro}
                 </h1>
 
 
@@ -15,10 +16,10 @@ const Cadastro = () => {
                 <div className="campos_cadastro">
                     <div className="campo_cad_nome">
                         <label htmlFor="">Filme</label>
-                        <input type="text" />
+                        <input type="text" placeholder={`Digite o nome do ${props.campoPlaceholder}`}/>
 
                     </div>
-                        <div className="campos_cad_genero">
+                        <div className="campos_cad_genero" style={{display:props.visibilidade}}>
                             <label htmlFor="">Genero</label>
                             <select name="" id="">
                                 <option  value="" disabled selected>Selecione</option>
@@ -32,7 +33,7 @@ const Cadastro = () => {
 
                         </div>
 
-                    <Botao />
+                    <Botao nomeDoBotao={props.nomeDoBotao}/>
                 </div>
             </form>
         </section>

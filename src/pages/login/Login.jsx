@@ -27,7 +27,7 @@ const Login = () => {
 
                         </div>
                     </div>
-                    <Botao />
+                    <Botao nomeDoBotao="Entrar" />
                 </form>
             </section>
         </main>
