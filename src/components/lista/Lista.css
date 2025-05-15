@@ -62,6 +62,29 @@
     border-bottom: solid 1px #73061b20;
 }
 
+.paginacao {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.paginacao button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #c80a30;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.paginacao button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+
 /* ************************************************************************************************************************************************************* */
 
 @media screen and (max-width: 768px) {

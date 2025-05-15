@@ -6,25 +6,27 @@ import Lista from "../../components/lista/Lista";
 import api from "../../Services/services";
 import Swal from 'sweetalert2';
 
-function alerta(icone, mensagem) {
-    const Toast = Swal.mixin({
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
-    Toast.fire({
-        icon: icone,
-        title: mensagem
-    });
-}
 const CadastroGenero = () => {
     const [genero, setGenero] = useState("");
+    const [listaGenero, setListaGenero] = useState([]);
+    function alerta(icone, mensagem) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+        Toast.fire({
+            icon: icone,
+            title: mensagem
+        });
+    }
+
     async function cadastrarGenero(evt) {
         evt.preventDefault();
         if (genero.trim() != "") {
@@ -48,14 +50,39 @@ const CadastroGenero = () => {
         }
     }
 
+    async function listarGenero() {
+        try {
+            const resposta = await api.get("genero");
+
+            console.log(resposta.data);
+
+            setListaGenero(resposta.data)
+
+        } catch (error) {
+            console.log(error);
+
+        }
+    }
+    async function deletarGenero(id) {
+    
+            await api.delete(`genero/${id}`);
+            alerta("success", "Gênero excluído com sucesso");
+            listarGenero();
+     
+    }
+
+
+
     // useEffect(() => {
     //     console.log(genero);
     // }, [genero]);
 
+    useEffect(() => {
+        listarGenero();
+    }, [genero])
     return (
 
         <>
-
             <Header />
             <main>
                 <Cadastro tituloCadastro="Cadastro de Gênero"
@@ -76,7 +103,8 @@ const CadastroGenero = () => {
 
                     nomeLista="Lista de Gênero"
                     visi_lista="none"
-
+                    lista={listaGenero}
+                    funcaoDeletar={deletarGenero}
                 />
             </main>
             <Footer />
