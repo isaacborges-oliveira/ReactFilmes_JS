@@ -4,13 +4,14 @@ import Editar from "../../assets/img/pen-to-square-solid.svg";
 import Excluir from "../../assets/img/trash-can-regular.svg";
 
 const Lista = (props) => {
-const itensPorPagina = 5;
-const [paginaAtual, setPaginaAtual] = useState(1);
-const totalItens = props.lista?.length || 0;
-const totalPaginas = Math.ceil(totalItens / itensPorPagina);
-const inicio = (paginaAtual - 1) * itensPorPagina;
-const fim = inicio + itensPorPagina;
- const itensPaginados = props.lista?.slice(inicio, fim);
+
+    const itensPorPagina = 6;
+    const [paginaAtual, setPaginaAtual] = useState(1);
+    const totalItens = props.lista?.length || 0;
+    const totalPaginas = Math.ceil(totalItens / itensPorPagina);
+    const inicio = (paginaAtual - 1) * itensPorPagina;
+    const fim = inicio + itensPorPagina;
+    const itensPaginados = props.lista?.slice(inicio, fim);
 
     const proximaPagina = () => {
         if (paginaAtual < totalPaginas) setPaginaAtual(paginaAtual + 1);
@@ -45,7 +46,14 @@ const fim = inicio + itensPorPagina;
                                         {item.nome}
                                     </td>
                                     <td data-cell="Gênero"> {item.nome} </td>
-                                    <td data-cell="Editar"><img src={Editar} alt="" /></td>
+                                    <td data-cell="Editar">
+                                        <img src={Editar}
+                                        onClick={() => props.funcEditar(item.idGenero)}
+                                        style={{ cursor: "pointer" }}
+                                  
+                                  
+                                  />
+                                  </td>
                                     <td data-cell="Excluir">
                                         <img
                                             src={Excluir}

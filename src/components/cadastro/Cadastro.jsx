@@ -26,13 +26,21 @@ const Cadastro = (props) => {
                     </div>
                         <div className="campos_cad_genero" style={{display:props.visibilidade}}>
                             <label htmlFor="">Genero</label>
-                            <select name="" id="">
+                            <select name="" id=""
+                            value={props.valorSelect}
+                            onChange={(e) => props.setValorSelect(e.target.value)}
+                            
+                            >
                                 <option  value="" disabled selected>Selecione</option>
-                                <option value="">Ação</option>
-                                <option value="">Aventura</option>
-                                <option value="">Drama</option>
-                                <option value="">Comédia</option>
+
+                                {props.lista && props.lista.length > 0 && props.lista.map((itemGenero) =>
+                                 <option value={itemGenero.idGenero}>{itemGenero.nome}</option>
                                 
+                                
+                                
+                                
+                                )}
+                            
 
                             </select>
 

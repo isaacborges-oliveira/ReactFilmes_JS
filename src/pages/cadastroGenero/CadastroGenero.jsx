@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
 const CadastroGenero = () => {
     const [genero, setGenero] = useState("");
     const [listaGenero, setListaGenero] = useState([]);
-    function alerta(icone, mensagem) {
+    function alertar(icone, mensagem) {
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -35,18 +35,19 @@ const CadastroGenero = () => {
                 await api.post("genero", { nome: genero });
                 //----ALERTA-------------
 
-                alerta("success", "Cadastro realizado com sucesso")
+                alertar("success", "Cadastro realizado com sucesso")
                 //----Fim DO ALERTA
                 setGenero("")
+                listarGenero();
 
             } catch (error) {
 
-                alerta("error", "Cadastro não realizado, primata")
+                alertar("error", "Cadastro não realizado, primata")
                 console.log(error);
             }
         } else {
 
-            alerta("warning", "primata, digite o gênero")
+            alertar("warning", "primata, digite o gênero")
         }
     }
 
@@ -64,11 +65,49 @@ const CadastroGenero = () => {
         }
     }
     async function deletarGenero(id) {
-    
-            await api.delete(`genero/${id}`);
-            alerta("success", "Gênero excluído com sucesso");
-            listarGenero();
-     
+        Swal.fire({
+            title: 'Tem certeza?',
+            text: "Você não poderá desfazer esta ação!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, apagar!',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                api.delete(`genero/${id}`); //interpolação
+            }
+        }).catch(error => {
+            console.log(error);
+            alertar("error", "Erro ao Excluir!");
+        });
+    }
+    listarGenero();
+
+    async function editarGenero(genero) {
+        const { value: novoGenero } = await Swal.fire({
+            title: "Modifique seu genero",
+            input: "text",
+            inputLabel: "Novo Gênero",
+            inputValue: genero.nomes,
+            showCancelButton: true,
+            inputValidator: (value) => {
+                if (!value) {
+                    return "O campo não pode estar vazio";
+                }
+            }
+        });
+        if (novoGenero) {
+            try {
+                api.put(`genero/${genero.idGenero}`,
+                    { nome: novoGenero });
+                 Swal.fire(`Gênero modidificado para ${novoGenero}`);
+                    
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
 
@@ -79,7 +118,8 @@ const CadastroGenero = () => {
 
     useEffect(() => {
         listarGenero();
-    }, [genero])
+    }, [genero]);
+
     return (
 
         <>
@@ -105,11 +145,13 @@ const CadastroGenero = () => {
                     visi_lista="none"
                     lista={listaGenero}
                     funcaoDeletar={deletarGenero}
+                    funcEditar={editarGenero}
                 />
             </main>
             <Footer />
         </>
     )
 }
+
 
 export default CadastroGenero;
